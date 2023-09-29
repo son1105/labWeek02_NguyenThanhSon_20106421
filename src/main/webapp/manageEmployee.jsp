@@ -40,15 +40,7 @@
             <td><a href="" class="link-info">Update</a></td>
         </tr>
         <tr>
-            <td>2</td>
-            <td>Phạm Thanh Sơn</td>
-            <td>2002-05-28</td>
-            <td>Vũng Tàu</td>
-            <td>anhem@gmail.com</td>
-            <td>0375568993</td>
-            <td>Active</td>
-            <td><a href="" class="link-info">Delete</a></td>
-            <td><a href="" class="link-info">Update</a></td>
+
         </tr>
         </tbody>
     </table>
