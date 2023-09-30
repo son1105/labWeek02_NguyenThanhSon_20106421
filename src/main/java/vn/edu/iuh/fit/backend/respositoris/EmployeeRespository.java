@@ -5,6 +5,8 @@ import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
 import vn.edu.iuh.fit.backend.entities.Employee;
 
+import java.util.List;
+
 public class EmployeeRespository {
     private EntityManager entityManager;
     private EntityTransaction transaction;
@@ -36,5 +38,18 @@ public class EmployeeRespository {
             transaction.rollback();
         }
         return false;
+    }
+    public List<Employee> getAllEmployee(){
+        transaction.begin();
+        try {
+            List<Employee> employees;
+            employees = entityManager.createQuery("From Employee", Employee.class).getResultList();
+            transaction.commit();
+            return employees;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
     }
 }

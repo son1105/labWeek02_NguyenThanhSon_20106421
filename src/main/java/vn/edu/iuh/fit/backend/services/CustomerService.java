@@ -3,6 +3,8 @@ package vn.edu.iuh.fit.backend.services;
 import vn.edu.iuh.fit.backend.entities.Customer;
 import vn.edu.iuh.fit.backend.respositoris.CustomerRespository;
 
+import java.util.List;
+
 public class CustomerService {
     private CustomerRespository respository;
 
@@ -14,5 +16,8 @@ public class CustomerService {
     }
     public boolean updateCustomer(Customer customer){
         return respository.updateCustomer(customer);
+    }
+    public List<Customer> getAll(){
+        return respository.getAllCustomer();
     }
 }

@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.iuh.fit.frontend.models.EmployeeModel" %>
+<%@ page import="vn.edu.iuh.fit.backend.entities.Employee" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 27/9/2023
@@ -28,20 +30,22 @@
         </tr>
         </thead>
         <tbody>
+        <%
+            EmployeeModel employeeModel = new EmployeeModel();
+            List<Employee> employees = employeeModel.getAll();
+            for (Employee employee : employees){%>
         <tr>
-            <td>1</td>
-            <td>Nguyễn Thanh Sơn</td>
-            <td>2002-05-11</td>
-            <td>Phú Yên</td>
-            <td>anhsonzzvn@gmail.com</td>
-            <td>0356448720</td>
-            <td>Active</td>
+            <td><%=employee.getId()%></td>
+            <td><%=employee.getFullName()%></td>
+            <td><%=employee.getDob()%></td>
+            <td><%=employee.getAddress()%></td>
+            <td><%=employee.getEmail()%></td>
+            <td><%=employee.getPhone()%></td>
+            <td><%=employee.getStatus()%></td>
             <td><a href="" class="link-info">Delete</a></td>
             <td><a href="" class="link-info">Update</a></td>
         </tr>
-        <tr>
-
-        </tr>
+        <%}%>
         </tbody>
     </table>
 </div>

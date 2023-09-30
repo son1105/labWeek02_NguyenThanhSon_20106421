@@ -17,7 +17,6 @@ public class ProductModel {
         service = new ProductService();
     }
     public boolean addProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Product product = new Product();
         String name = req.getParameter("product_name");
         String unit = req.getParameter("unit");
         String manufactureName = req.getParameter("manufacture_name");
@@ -27,7 +26,7 @@ public class ProductModel {
     public boolean updateProduct(Product product){
         return service.updateProduct(product);
     }
-    public List<Product> getAllProduct(){
+    public List<Product> getAll(){
         return service.getAllProduct();
     }
 }

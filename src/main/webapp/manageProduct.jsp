@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.iuh.fit.backend.entities.Product" %>
+<%@ page import="vn.edu.iuh.fit.frontend.models.ProductModel" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 27/9/2023
@@ -27,26 +29,21 @@
         </tr>
         </thead>
         <tbody>
+        <%
+            ProductModel productModel = new ProductModel();
+            List<Product> products = productModel.getAllProduct();
+            for (Product product : products){%>
         <tr>
-            <td>1</td>
-            <td>Xoài</td>
-            <td>Kg</td>
-            <td>Việt Nam</td>
-            <td>Trái cây</td>
-            <td>Active</td>
+            <td><%=product.getId()%></td>
+            <td><%=product.getName()%></td>
+            <td><%=product.getUnit()%></td>
+            <td><%=product.getManufacturerName()%></td>
+            <td><%=product.getDescription()%></td>
+            <td><%=product.getStatus()%></td>
             <td><a href="" class="link-info">Delete</a></td>
             <td><a href="" class="link-info">Update</a></td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>Cam</td>
-            <td>Kg</td>
-            <td>Việt Nam</td>
-            <td>Trái cây</td>
-            <td>Active</td>
-            <td><a href="" class="link-info">Delete</a></td>
-            <td><a href="" class="link-info">Update</a></td>
-        </tr>
+        <%}%>
         </tbody>
     </table>
 </div>

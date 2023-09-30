@@ -5,6 +5,8 @@ import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
 import vn.edu.iuh.fit.backend.entities.Customer;
 
+import java.util.List;
+
 public class CustomerRespository {
     private EntityManager entityManager;
     private EntityTransaction transaction;
@@ -36,5 +38,18 @@ public class CustomerRespository {
             transaction.rollback();
         }
         return false;
+    }
+    public List<Customer> getAllCustomer(){
+        transaction.begin();
+        try {
+            List<Customer> customers;
+            customers = entityManager.createQuery("From Customer", Customer.class).getResultList();
+            transaction.commit();
+            return customers;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
     }
 }

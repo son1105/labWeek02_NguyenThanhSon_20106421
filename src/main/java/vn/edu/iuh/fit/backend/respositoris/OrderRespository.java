@@ -41,6 +41,21 @@ public class OrderRespository {
         }
         return false;
     }
+
+    public List<Order> getAllOrder(){
+        transaction.begin();
+        try {
+            List<Order> orders;
+            orders = entityManager.createQuery("From Order", Order.class).getResultList();
+            transaction.commit();
+            return orders;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
+    }
+
     public List<Order> statsticOrderByDate(LocalDate fromDate, LocalDateTime toDate){
         transaction.begin();
         try {

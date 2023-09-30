@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.iuh.fit.frontend.models.CustomerModel" %>
+<%@ page import="vn.edu.iuh.fit.backend.entities.Customer" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 27/9/2023
@@ -26,15 +28,20 @@
         </tr>
         </thead>
         <tbody>
+        <%
+            CustomerModel customerModel = new CustomerModel();
+            List<Customer> customers = customerModel.getAll();
+            for (Customer customer : customers){%>
         <tr>
-            <td>1</td>
-            <td>Nguyễn Tấn Phong</td>
-            <td>Phú Yên</td>
-            <td>phongtram333zzxx@gmail.com</td>
-            <td>0356448720</td>
+            <td><%=customer.getId()%></td>
+            <td><%=customer.getName()%></td>
+            <td><%=customer.getAddress()%></td>
+            <td><%=customer.getEmail()%></td>
+            <td><%=customer.getPhone()%></td>
             <td><a href="" class="link-info">Delete</a></td>
             <td><a href="" class="link-info">Update</a></td>
         </tr>
+        <%}%>
         </tbody>
     </table>
 </div>

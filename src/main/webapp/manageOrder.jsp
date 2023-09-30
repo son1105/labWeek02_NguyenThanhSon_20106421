@@ -122,26 +122,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Xoài</td>
-                <td>Kg</td>
-                <td>Việt Nam</td>
-                <td>Trái cây</td>
-                <td>Active</td>
-                <td><a href="" class="link-info">Delete</a></td>
-                <td><a href="" class="link-info">Update</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Cam</td>
-                <td>Kg</td>
-                <td>Việt Nam</td>
-                <td>Trái cây</td>
-                <td>Active</td>
-                <td><a href="" class="link-info">Delete</a></td>
-                <td><a href="" class="link-info">Update</a></td>
-            </tr>
+<%--            <%--%>
+<%--                Ord productModel = new ProductModel();--%>
+<%--                List<Product> products = productModel.getAllProduct();--%>
+<%--                for (Product product : products){%>--%>
+<%--            <tr>--%>
+<%--                <td><%=product.getId()%></td>--%>
+<%--                <td><%=product.getName()%></td>--%>
+<%--                <td><%=product.getUnit()%></td>--%>
+<%--                <td><%=product.getManufacturerName()%></td>--%>
+<%--                <td><%=product.getDescription()%></td>--%>
+<%--                <td><%=product.getStatus()%></td>--%>
+<%--                <td><a href="" class="link-info">Delete</a></td>--%>
+<%--                <td><a href="" class="link-info">Update</a></td>--%>
+<%--            </tr>--%>
+<%--            <%}%>--%>
             </tbody>
         </table>
     </div>

@@ -43,7 +43,7 @@ public class ProductRespository {
         transaction.begin();
         try {
             List<Product> products;
-            products = entityManager.createQuery("From Product p where p.status=1", Product.class).getResultList();
+            products = entityManager.createQuery("From Product", Product.class).getResultList();
             transaction.commit();
             return products;
         }catch (Exception e){

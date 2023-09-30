@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import vn.edu.iuh.fit.backend.enums.EmployeeStatus;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +16,7 @@ public class Employee implements Serializable{
     @Column(name = "full_name", length = 150)
     private String fullName;
     @Column(name = "dob", length = 6)
-    private LocalDateTime dob;
+    private LocalDate dob;
     @Column(name = "email", length = 150)
     private String email;
     @Column(name = "phone", length = 15)
@@ -28,7 +29,7 @@ public class Employee implements Serializable{
     public Employee() {
     }
 
-    public Employee(String fullName, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status) {
+    public Employee(String fullName, LocalDate dob, String email, String phone, String address, EmployeeStatus status) {
         this.fullName = fullName;
         this.dob = dob;
         this.email = email;
@@ -53,11 +54,11 @@ public class Employee implements Serializable{
         this.fullName = fullName;
     }
 
-    public LocalDateTime getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(LocalDateTime dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

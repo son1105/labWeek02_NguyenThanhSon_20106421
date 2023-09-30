@@ -39,6 +39,10 @@
             <label class="form-label mx-2 w-25" for="phone">Phone:</label>
             <input class="form-control mx-2 w-75" type="text" name="phone" id="phone">
         </div>
+        <div class="d-flex my-2">
+            <label class="form-label mx-2 w-25" for="status">Status:</label>
+            <input class="form-control mx-2 w-75" type="text" name="status" id="status">
+        </div>
         <div class="d-flex my-2 justify-content-center">
             <button class="btn btn-primary mx-2" type="reset">Reset</button>
             <button class="btn btn-primary mx-2" type="submit">Insert</button>
