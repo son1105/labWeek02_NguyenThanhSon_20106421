@@ -1,14 +1,18 @@
 package vn.edu.iuh.fit.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.backend.enums.EmployeeStatus;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-public class Employee implements Serializable{
+@Table(name = "employee")
+public class Employee implements Serializable {
     @Id
     @Column(name = "emp_id", columnDefinition = "BIGINT(20)")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +29,32 @@ public class Employee implements Serializable{
     private String address;
     @Column(name = "status", columnDefinition = "INT(11)")
     private EmployeeStatus status;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<Order> orderList;
 
     public Employee() {
+    }
+
+    public Employee(long id, String fullName, LocalDate dob, String email, String phone, String address, EmployeeStatus status, List<Order> orderList) {
+        this.id = id;
+        this.fullName = fullName;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
+        this.orderList = orderList;
+    }
+
+    public Employee(String fullName, LocalDate dob, String email, String phone, String address, EmployeeStatus status, List<Order> orderList) {
+        this.fullName = fullName;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
+        this.orderList = orderList;
     }
 
     public Employee(String fullName, LocalDate dob, String email, String phone, String address, EmployeeStatus status) {
@@ -94,6 +122,14 @@ public class Employee implements Serializable{
         this.status = status;
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -104,6 +140,7 @@ public class Employee implements Serializable{
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", status=" + status +
+//                ", orderList=" + orderList +
                 '}';
     }
 }

@@ -13,9 +13,42 @@
     <title>Manage Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function getAll(){
+            let tableContent = '';
+            const urlBacon = "http://localhost:8080/nts/api/employees";
+            (function() {
+                $.ajax({
+                    method: "GET",
+                    url: urlBacon,
+                    dataType: "json"
+                })
+                    .done(function(data) {
+                        data.forEach(d => {
+                            tableContent += '<tr>';
+                            tableContent += "<td>" + d.id + "</td>"
+                                + "<td>" + d.fullName + "</td>"
+                                + "<td>" + d.dob + "</td>"
+                                + "<td>" + d.address + "</td>"
+                                + "<td>" + d.email + "</td>"
+                                + "<td>" + d.phone + "</td>"
+                                + "<td>" + d.status + "</td>"
+                                + "<td><a href='' class='link-info'>Delete</a></td>"
+                                + "<td><a href='' class='link-info'>Update</a></td>"
+                            tableContent += '</tr>';
+                        })
+                        $("tbody").html(tableContent)
+                    })
+                    .fail(function() {
+                        alert("no good");
+                    });
+            })()
+        });
+    </script>
 </head>
 <body>
-<div class="container d-flex flex-column p-5 bg-dark w-75 my-5">
+<div class="container d-flex flex-column w-75 my-5">
     <table class="table table-hover table-bordered text-center">
         <thead class="table-info">
         <tr>
@@ -30,22 +63,6 @@
         </tr>
         </thead>
         <tbody>
-        <%
-            EmployeeModel employeeModel = new EmployeeModel();
-            List<Employee> employees = employeeModel.getAll();
-            for (Employee employee : employees){%>
-        <tr>
-            <td><%=employee.getId()%></td>
-            <td><%=employee.getFullName()%></td>
-            <td><%=employee.getDob()%></td>
-            <td><%=employee.getAddress()%></td>
-            <td><%=employee.getEmail()%></td>
-            <td><%=employee.getPhone()%></td>
-            <td><%=employee.getStatus()%></td>
-            <td><a href="" class="link-info">Delete</a></td>
-            <td><a href="" class="link-info">Update</a></td>
-        </tr>
-        <%}%>
         </tbody>
     </table>
 </div>

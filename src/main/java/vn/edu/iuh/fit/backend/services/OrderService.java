@@ -17,6 +17,6 @@ public class OrderService {
         return respository.updateOrder(order);
     }
     public List<Order> getAll(){
-        return respository.getAllOrder();
+        return respository.getAll();
     }
 }

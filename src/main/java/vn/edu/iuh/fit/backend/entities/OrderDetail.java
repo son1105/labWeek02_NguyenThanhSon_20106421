@@ -1,17 +1,22 @@
 package vn.edu.iuh.fit.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Entity
+@Table(name = "order_detail")
 public class OrderDetail implements Serializable{
     @Id
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonBackReference
     private Order order;
     @Id
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "product_id")
     private Product product;
     @Column(name = "quantity")

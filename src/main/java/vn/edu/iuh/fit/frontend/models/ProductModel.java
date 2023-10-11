@@ -27,6 +27,6 @@ public class ProductModel {
         return service.updateProduct(product);
     }
     public List<Product> getAll(){
-        return service.getAllProduct();
+        return service.getAll();
     }
 }

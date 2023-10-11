@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.backend.respositoris;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
+import vn.edu.iuh.fit.backend.entities.Customer;
 import vn.edu.iuh.fit.backend.entities.Employee;
 
 import java.util.List;
@@ -46,6 +47,20 @@ public class EmployeeRespository {
             employees = entityManager.createQuery("From Employee", Employee.class).getResultList();
             transaction.commit();
             return employees;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
+    }
+    public Employee getEmployee(long id){
+        transaction.begin();
+        try {
+            Employee employee = entityManager.createQuery("From Employee e where e.id=:id", Employee.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            transaction.commit();
+            return employee;
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();

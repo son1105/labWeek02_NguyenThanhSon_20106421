@@ -1,5 +1,7 @@
 package vn.edu.iuh.fit.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,15 +21,26 @@ public class Order implements Serializable {
     private LocalDate orderDate;
     @ManyToOne
     @JoinColumn(name = "cus_id")
+    @JsonBackReference
     private Customer customer;
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
+    @JsonBackReference
     private Employee employee;
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 
     public Order(LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
+        this.orderDate = orderDate;
+        this.customer = customer;
+        this.employee = employee;
+        this.orderDetailList = orderDetailList;
+    }
+
+    public Order(long order_id, LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
+        this.order_id = order_id;
         this.orderDate = orderDate;
         this.customer = customer;
         this.employee = employee;
@@ -82,8 +95,9 @@ public class Order implements Serializable {
         return "Order{" +
                 "order_id=" + order_id +
                 ", orderDate=" + orderDate +
-                ", customer=" + customer +
-                ", employee=" + employee +
+//                ", customer=" + customer +
+//                ", employee=" + employee +
+//                ", orderDetailList=" + orderDetailList +
                 '}';
     }
 }

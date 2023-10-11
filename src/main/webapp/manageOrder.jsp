@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.iuh.fit.frontend.models.OrderModel" %>
+<%@ page import="vn.edu.iuh.fit.backend.entities.Order" %>
+<%@ page import="vn.edu.iuh.fit.backend.respositoris.OrderRespository" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 27/9/2023
@@ -11,10 +13,41 @@
     <title>Manage Order</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function getAll(){
+            let tableContent = '';
+            const urlBacon = "http://localhost:8080/nts/api/orders";
+            (function() {
+                $.ajax({
+                    method: "GET",
+                    url: urlBacon,
+                    dataType: "json"
+                })
+                    .done(function(data) {
+                        console.log(data)
+                        data.forEach(d => {
+                            tableContent += '<tr>';
+                            tableContent += "<td>" + d.order_id + "</td>"
+                                + "<td>" + d.orderDate + "</td>"
+                                + "<td>" + d.employee.id + "</td>"
+                                + "<td>" + d.customer.id + "</td>"
+                                + "<td><a href='' class='link-info'>Delete</a></td>"
+                                + "<td><a href='' class='link-info'>Update</a></td>"
+                            tableContent += '</tr>';
+                        })
+                        $("#order").html(tableContent)
+                    })
+                    .fail(function() {
+                        alert("no good");
+                    });
+            })()
+        });
+    </script>
 </head>
 
 <body>
-<div class="container d-flex flex-column bg-dark w-100">
+<div class="container d-flex flex-column w-100">
     <div>
         <table class="table table-hover table-bordered text-center">
             <thead class="table-info">
@@ -26,23 +59,7 @@
                 <th colspan="2"><a href="" class="link-info">Insert</a></th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>2002-05-11</td>
-                <td>1</td>
-                <td>1</td>
-                <td><a href="" class="link-info">Delete</a></td>
-                <td><a href="" class="link-info">Update</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>2002-05-28</td>
-                <td>2</td>
-                <td>2</td>
-                <td><a href="" class="link-info">Delete</a></td>
-                <td><a href="" class="link-info">Update</a></td>
-            </tr>
+            <tbody id="order">
             </tbody>
         </table>
     </div>

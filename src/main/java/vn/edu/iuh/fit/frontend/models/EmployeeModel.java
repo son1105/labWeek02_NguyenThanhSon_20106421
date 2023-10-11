@@ -20,12 +20,12 @@ public class EmployeeModel {
     public boolean addEmployee(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String fullName = req.getParameter("full_name");
         String dateOfBirth = req.getParameter("date_of_birth");
-        String[] dateSplit = dateOfBirth.split("/");
+        System.out.println(dateOfBirth);
+        String[] dateSplit = dateOfBirth.split("-");
         String address = req.getParameter("address");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
-        String status = req.getParameter("status");
-        return service.addEmployee(new Employee(fullName, LocalDate.of(Integer.parseInt(dateSplit[2]), Integer.parseInt(dateSplit[1]), Integer.parseInt(dateSplit[0])), email, phone, address, EmployeeStatus.ACTIVE));
+        return service.addEmployee(new Employee(fullName, LocalDate.of(Integer.parseInt(dateSplit[0]), Integer.parseInt(dateSplit[1]), Integer.parseInt(dateSplit[2])), email, phone, address, EmployeeStatus.ACTIVE));
     }
     public boolean updateEmployee(Employee employee){
         return service.updateEmployee(employee);

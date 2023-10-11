@@ -52,4 +52,18 @@ public class CustomerRespository {
         }
         return null;
     }
+    public Customer getCustomer(long id){
+        transaction.begin();
+        try {
+            Customer customer = entityManager.createQuery("From Customer c where c.id=:id", Customer.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            transaction.commit();
+            return customer;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
+    }
 }

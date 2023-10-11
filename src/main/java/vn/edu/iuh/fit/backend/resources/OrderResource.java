@@ -6,31 +6,32 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 import vn.edu.iuh.fit.backend.converters.Mapper;
-import vn.edu.iuh.fit.backend.entities.Product;
-import vn.edu.iuh.fit.backend.services.ProductService;
+import vn.edu.iuh.fit.backend.entities.Employee;
+import vn.edu.iuh.fit.backend.entities.Order;
+import vn.edu.iuh.fit.backend.services.EmployeeService;
+import vn.edu.iuh.fit.backend.services.OrderService;
 
 import java.util.List;
 
-@Path("/products")
-public class ProductResource {
-    private ProductService productService;
+@Path("/orders")
+public class OrderResource {
+    private OrderService orderService;
     private Mapper mapper;
 
-    public ProductResource(){
-        productService = new ProductService();
+    public OrderResource(){
+        orderService = new OrderService();
         mapper = new Mapper();
     }
 
     @GET
     @Produces("application/json")
     public Response getAll(){
-        List<Product> products = productService.getAll();
+        List<Order> orders = orderService.getAll();
         try {
-            mapper.getContext(Product.class).writeValueAsString(products);
+            mapper.getContext(Order.class).writeValueAsString(orders);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        return Response.ok(products).build();
-
+        return Response.ok(orders).build();
     }
 }

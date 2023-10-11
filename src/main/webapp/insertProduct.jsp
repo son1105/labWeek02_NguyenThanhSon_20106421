@@ -38,7 +38,6 @@
         <div class="d-flex my-2 justify-content-center">
             <button class="btn btn-primary mx-2" type="reset">Reset</button>
             <button class="btn btn-primary mx-2" type="submit" name="insertProduct">Insert</button>
-<%--            <input class="btn btn-primary mx-2" type="submit" value="Insert">--%>
         </div>
     </form>
 </div>

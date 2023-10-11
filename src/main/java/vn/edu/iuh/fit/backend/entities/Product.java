@@ -1,12 +1,16 @@
 package vn.edu.iuh.fit.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.backend.enums.ProductStatus;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-public class Product implements Serializable{
+@Table(name = "product")
+public class Product implements Serializable {
     @Id
     @Column(name = "product_id", columnDefinition = "BIGINT(20)")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +25,40 @@ public class Product implements Serializable{
     private String manufacturerName;
     @Column(name = "status", columnDefinition = "INT(11)")
     private ProductStatus status;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<OrderDetail> orderDetailList;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<ProductImage> productImageList;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<ProductPrice> productPriceList;
 
     public Product() {
+    }
+
+    public Product(long id, String name, String description, String unit, String manufacturerName, ProductStatus status, List<OrderDetail> orderDetailList, List<ProductImage> productImageList, List<ProductPrice> productPriceList) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.unit = unit;
+        this.manufacturerName = manufacturerName;
+        this.status = status;
+        this.orderDetailList = orderDetailList;
+        this.productImageList = productImageList;
+        this.productPriceList = productPriceList;
+    }
+
+    public Product(String name, String description, String unit, String manufacturerName, ProductStatus status, List<OrderDetail> orderDetailList, List<ProductImage> productImageList, List<ProductPrice> productPriceList) {
+        this.name = name;
+        this.description = description;
+        this.unit = unit;
+        this.manufacturerName = manufacturerName;
+        this.status = status;
+        this.orderDetailList = orderDetailList;
+        this.productImageList = productImageList;
+        this.productPriceList = productPriceList;
     }
 
     public Product(String name, String description, String unit, String manufacturerName, ProductStatus status) {
@@ -81,6 +117,30 @@ public class Product implements Serializable{
         this.status = status;
     }
 
+    public List<OrderDetail> getOrderList() {
+        return orderDetailList;
+    }
+
+    public void setOrderList(List<OrderDetail> orderList) {
+        this.orderDetailList = orderList;
+    }
+
+    public List<ProductImage> getProductImageList() {
+        return productImageList;
+    }
+
+    public void setProductImageList(List<ProductImage> productImageList) {
+        this.productImageList = productImageList;
+    }
+
+    public List<ProductPrice> getProductPriceList() {
+        return productPriceList;
+    }
+
+    public void setProductPriceList(List<ProductPrice> productPriceList) {
+        this.productPriceList = productPriceList;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -90,6 +150,9 @@ public class Product implements Serializable{
                 ", unit='" + unit + '\'' +
                 ", manufacturerName='" + manufacturerName + '\'' +
                 ", status=" + status +
+//                ", orderList=" + orderDetailList +
+//                ", productImageList=" + productImageList +
+//                ", productPriceList=" + productPriceList +
                 '}';
     }
 

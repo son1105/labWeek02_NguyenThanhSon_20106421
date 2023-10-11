@@ -17,7 +17,7 @@ public class ProductService {
     public boolean updateProduct(Product product){
         return respository.updateProduct(product);
     }
-    public List<Product> getAllProduct(){
-        return respository.getAllProduct();
+    public List<Product> getAll(){
+        return respository.getAll();
     }
 }

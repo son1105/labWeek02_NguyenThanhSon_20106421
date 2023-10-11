@@ -39,7 +39,7 @@ public class ProductRespository {
         }
         return false;
     }
-    public List<Product> getAllProduct(){
+    public List<Product> getAll(){
         transaction.begin();
         try {
             List<Product> products;

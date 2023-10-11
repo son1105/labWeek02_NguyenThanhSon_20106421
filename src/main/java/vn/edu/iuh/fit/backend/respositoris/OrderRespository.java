@@ -4,10 +4,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
 import vn.edu.iuh.fit.backend.entities.Order;
+import vn.edu.iuh.fit.backend.entities.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class OrderRespository {
     private EntityManager entityManager;
@@ -42,13 +45,28 @@ public class OrderRespository {
         return false;
     }
 
-    public List<Order> getAllOrder(){
+    public List<Order> getAll(){
         transaction.begin();
         try {
             List<Order> orders;
-            orders = entityManager.createQuery("From Order", Order.class).getResultList();
+            orders = entityManager.createQuery("From Order ", Order.class).getResultList();
+            System.out.println(orders.get(1).getEmployee());
             transaction.commit();
             return orders;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
+    }
+    public Order getOrder(long id){
+        transaction.begin();
+        try {
+            Order order = entityManager.createQuery("From Order o where o.id=:id", Order.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            transaction.commit();
+            return order;
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
@@ -77,13 +95,13 @@ public class OrderRespository {
         }
         return null;
     }
-    public List<Order> statsticOrderByEmployee(long empId){
+    public List<Order> statsticOrderByEmployee(long empId) {
         transaction.begin();
-        try{
+        try {
             transaction.commit();
             return entityManager.createQuery("from Order o where o.employee.id =:id", Order.class)
                     .setParameter("id", empId).getResultList();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             transaction.rollback();
         }
