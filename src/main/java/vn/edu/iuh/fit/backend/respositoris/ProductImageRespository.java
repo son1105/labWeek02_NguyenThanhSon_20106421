@@ -5,6 +5,8 @@ import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
 import vn.edu.iuh.fit.backend.entities.ProductImage;
 
+import java.util.Optional;
+
 public class ProductImageRespository{
     private EntityManager entityManager;
     private EntityTransaction transaction;
@@ -22,6 +24,20 @@ public class ProductImageRespository{
             transaction.commit();
             return productImage;
         } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
+    }
+    public String getPathProductById(long id){
+        transaction.begin();
+        try {
+            ProductImage p = entityManager.createQuery("select p from ProductImage p where p.product.id=:id", ProductImage.class)
+                    .setParameter("id", id).getSingleResult();
+            String path = p.getPath();
+            transaction.commit();
+            return path;
+        }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
         }

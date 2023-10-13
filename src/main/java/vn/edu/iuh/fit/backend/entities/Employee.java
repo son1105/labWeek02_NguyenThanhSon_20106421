@@ -30,7 +30,7 @@ public class Employee implements Serializable {
     @Column(name = "status", columnDefinition = "INT(11)")
     private EmployeeStatus status;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnore
     List<Order> orderList;
 
     public Employee() {

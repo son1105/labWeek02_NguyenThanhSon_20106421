@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
 import vn.edu.iuh.fit.backend.entities.Order;
+import vn.edu.iuh.fit.backend.entities.OrderDetail;
 import vn.edu.iuh.fit.backend.entities.Product;
 
 import java.time.LocalDate;
@@ -64,6 +65,20 @@ public class OrderRespository {
         try {
             Order order = entityManager.createQuery("From Order o where o.id=:id", Order.class)
                     .setParameter("id", id)
+                    .getSingleResult();
+            transaction.commit();
+            return order;
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        return null;
+    }
+
+    public Order getNewOrder(){
+        transaction.begin();
+        try {
+            Order order = entityManager.createQuery("From Order o Order By o.id desc LIMIT 1", Order.class)
                     .getSingleResult();
             transaction.commit();
             return order;

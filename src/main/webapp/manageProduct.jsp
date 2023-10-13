@@ -32,9 +32,12 @@
                                 + "<td>" + d.unit + "</td>"
                                 + "<td>" + d.manufacturerName + "</td>"
                                 + "<td>" + d.description + "</td>"
+                                + "<td><img src='data/image"+d.id+".png' width='100' height='100'></td>"
                                 + "<td>" + d.status + "</td>"
-                                + "<td><a href='' class='link-info'>Delete</a></td>"
-                                + "<td><a href='' class='link-info'>Update</a></td>"
+                                + "<td><Button class='btn btn-success' >Update</Button></td>"
+                                + "<td><Button class='btn btn-danger'>Delete</Button></td>"
+                                + "<td><Button class='btn btn-primary' type='submit' name='btn"+d.id+"'" +
+                                "'>Add</Button></td>"
                             tableContent += '</tr>';
                         })
                         $("tbody").html(tableContent)
@@ -48,21 +51,26 @@
 </head>
 <body>
 <div class="container d-flex flex-column p-5 w-75 my-5">
-    <table class="table table-hover table-bordered text-center">
-        <thead class="table-info">
-        <tr>
-            <th>Product Id</th>
-            <th>Name</th>
-            <th>Unit</th>
-            <th>Manufacturer Name</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th colspan="2"><a href="insertProduct.jsp" class="link-info">Insert</a></th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <form action="control">
+        <Button class="btn" type="submit" style="width: 75px" name="cart"><img src="data/cart.png" alt="" height='50'></Button>
+        <table class="table table-hover table-bordered text-center">
+            <thead class="table-info">
+            <tr>
+                <th>Product Id</th>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Manufacturer Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th colspan="2"><a href="insertProduct.jsp" class="link-info">Insert</a></th>
+                <th>Add To Cart</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>

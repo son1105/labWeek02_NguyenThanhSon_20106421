@@ -4,6 +4,7 @@ import vn.edu.iuh.fit.backend.entities.Product;
 import vn.edu.iuh.fit.backend.respositoris.ProductRespository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
     private ProductRespository respository;
@@ -19,5 +20,11 @@ public class ProductService {
     }
     public List<Product> getAll(){
         return respository.getAll();
+    }
+    public Product getOneById(long id){
+        return respository.getOneById(id);
+    }
+    public long getIdByName(String name){
+        return respository.getIdByName(name);
     }
 }

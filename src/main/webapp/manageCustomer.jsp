@@ -32,8 +32,8 @@
                                 + "<td>" + d.address + "</td>"
                                 + "<td>" + d.email + "</td>"
                                 + "<td>" + d.phone + "</td>"
-                                + "<td><a href='' class='link-info'>Delete</a></td>"
-                                + "<td><a href='' class='link-info'>Update</a></td>"
+                                + "<td><Button class='btn btn-success' >Update</Button></td>"
+                                + "<td><Button class='btn btn-danger'>Delete</Button></td>"
                             tableContent += '</tr>';
                         })
                         $("tbody").html(tableContent)

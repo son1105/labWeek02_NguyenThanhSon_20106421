@@ -19,4 +19,10 @@ public class OrderService {
     public List<Order> getAll(){
         return respository.getAll();
     }
+    public Order getOne(long id){
+        return respository.getOrder(id);
+    }
+    public Order getNewOrder(){
+        return respository.getNewOrder();
+    }
 }

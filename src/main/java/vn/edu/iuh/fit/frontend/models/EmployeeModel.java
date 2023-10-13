@@ -33,4 +33,7 @@ public class EmployeeModel {
     public List<Employee> getAll(){
         return service.getAll();
     }
+    public Employee getOne(long id){
+        return service.getOne(id);
+    }
 }

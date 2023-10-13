@@ -15,7 +15,7 @@
 
 <body>
 <div class="container p-5 d-flex justify-content-center">
-    <form class="bg-info w-50 justify-content-center" action="control" method="get">
+    <form class="bg-info w-50 justify-content-center" action="control" method="post">
         <div class="justify-content-center d-flex">
             <h5>Insert Product</h5>
         </div>

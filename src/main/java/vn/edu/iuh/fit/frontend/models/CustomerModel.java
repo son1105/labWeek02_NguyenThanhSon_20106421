@@ -4,6 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.iuh.fit.backend.entities.Customer;
+import vn.edu.iuh.fit.backend.entities.Employee;
 import vn.edu.iuh.fit.backend.services.CustomerService;
 
 import java.io.IOException;
@@ -27,5 +28,8 @@ public class CustomerModel {
     }
     public List<Customer> getAll(){
         return service.getAll();
+    }
+    public Customer getOne(long id){
+        return service.getOne(id);
     }
 }

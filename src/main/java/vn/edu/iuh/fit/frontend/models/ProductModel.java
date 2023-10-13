@@ -9,6 +9,7 @@ import vn.edu.iuh.fit.backend.services.ProductService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductModel {
     private ProductService service;
@@ -28,5 +29,11 @@ public class ProductModel {
     }
     public List<Product> getAll(){
         return service.getAll();
+    }
+    public Product getProduct(long id){
+        return service.getOneById(id);
+    }
+    public long getIdByName(String name){
+        return service.getIdByName(name);
     }
 }

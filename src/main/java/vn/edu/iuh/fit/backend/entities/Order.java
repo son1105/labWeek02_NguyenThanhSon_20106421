@@ -21,16 +21,24 @@ public class Order implements Serializable {
     private LocalDate orderDate;
     @ManyToOne
     @JoinColumn(name = "cus_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Customer customer;
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    @JsonBackReference
+//    @JsonBackReference
     private Employee employee;
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
+
+    public Order(long order_id, LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
+        this.order_id = order_id;
+        this.orderDate = orderDate;
+        this.customer = customer;
+        this.employee = employee;
+        this.orderDetailList = orderDetailList;
+    }
 
     public Order(LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
         this.orderDate = orderDate;
@@ -39,12 +47,10 @@ public class Order implements Serializable {
         this.orderDetailList = orderDetailList;
     }
 
-    public Order(long order_id, LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
-        this.order_id = order_id;
+    public Order(LocalDate orderDate, Customer customer, Employee employee) {
         this.orderDate = orderDate;
         this.customer = customer;
         this.employee = employee;
-        this.orderDetailList = orderDetailList;
     }
 
     public Order() {

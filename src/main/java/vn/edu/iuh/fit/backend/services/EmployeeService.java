@@ -20,4 +20,7 @@ public class EmployeeService {
     public List<Employee> getAll(){
         return respository.getAllEmployee();
     }
+    public Employee getOne(long id){
+        return respository.getEmployee(id);
+    }
 }

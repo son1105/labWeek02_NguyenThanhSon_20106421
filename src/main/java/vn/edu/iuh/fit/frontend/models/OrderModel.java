@@ -7,6 +7,8 @@ import vn.edu.iuh.fit.backend.entities.Order;
 import vn.edu.iuh.fit.backend.services.OrderService;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderModel {
@@ -16,20 +18,18 @@ public class OrderModel {
         service = new OrderService();
     }
     public boolean addOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String fullName = req.getParameter("full_name");
-        String dateOfBirth = req.getParameter("date_of_birth");
-        String[] dateSplit = dateOfBirth.split("/");
-        String address = req.getParameter("address");
-        String email = req.getParameter("email");
-        String phone = req.getParameter("phone");
-        String status = req.getParameter("status");
-//        return service.addOrder(new Order(fullName, LocalDate.of(Integer.parseInt(dateSplit[2]), Integer.parseInt(dateSplit[1]), Integer.parseInt(dateSplit[0])), email, phone, address, EmployeeStatus.ACTIVE));
-        return false;
+        return service.addOrder(new Order(LocalDate.now(), new CustomerModel().getOne(1), new EmployeeModel().getOne(1)));
     }
     public boolean updateOrder(Order order){
         return service.updateOrder(order);
     }
     public List<Order> getAll(){
         return service.getAll();
+    }
+    public Order getOne(long id){
+        return service.getOne(id);
+    }
+    public Order getNewOrder(){
+        return service.getNewOrder();
     }
 }

@@ -23,7 +23,7 @@ public class Customer implements Serializable {
     @Column(name = "address", length = 250)
     private String address;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnore
     List<Order> orderList;
 
     public Customer() {
