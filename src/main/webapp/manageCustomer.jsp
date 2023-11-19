@@ -59,20 +59,6 @@
         </tr>
         </thead>
         <tbody>
-        <%
-            CustomerModel customerModel = new CustomerModel();
-            List<Customer> customers = customerModel.getAll();
-            for (Customer customer : customers){%>
-        <tr>
-            <td><%=customer.getId()%></td>
-            <td><%=customer.getName()%></td>
-            <td><%=customer.getAddress()%></td>
-            <td><%=customer.getEmail()%></td>
-            <td><%=customer.getPhone()%></td>
-            <td><a href="" class="link-info">Delete</a></td>
-            <td><a href="" class="link-info">Update</a></td>
-        </tr>
-        <%}%>
         </tbody>
     </table>
 </div>

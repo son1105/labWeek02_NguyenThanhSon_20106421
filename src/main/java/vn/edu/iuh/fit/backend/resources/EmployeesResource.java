@@ -27,6 +27,7 @@ public class EmployeesResource {
     @Produces("application/json")
     public Response getAll(){
         List<Employee> employees = employeeService.getAll();
+        System.out.println(employees);
         try {
             mapper.getContext(Employee.class).writeValueAsString(employees);
         } catch (JsonProcessingException e) {

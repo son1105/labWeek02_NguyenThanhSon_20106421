@@ -25,6 +25,7 @@ public class ProductResource {
     @Produces("application/json")
     public Response getAll(){
         List<Product> products = productService.getAll();
+        System.out.println(products);
         try {
             mapper.getContext(Product.class).writeValueAsString(products);
         } catch (JsonProcessingException e) {
