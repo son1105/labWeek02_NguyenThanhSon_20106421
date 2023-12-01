@@ -41,18 +41,6 @@
     <h4>Product Id: <%=session.getAttribute("chartOfProduct")%></h4>
     <canvas id="myLineChart"></canvas>
     <script>
-        var chartData = {
-            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5'],
-            datasets: [{
-                label: 'Doanh số bán hàng',
-                data: [4000, 20000, 22000, 30000, 3000],
-                borderColor: 'rgb(75, 192, 192)',
-                borderWidth: 2,
-                fill: false
-            }]
-        };
-
-
         fetch('http://localhost:8080/nts/api/product-price/product/'+'<%=session.getAttribute("chartOfProduct")%>')
             .then(res => res.json())
             .then(res => {

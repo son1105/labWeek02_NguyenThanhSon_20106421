@@ -131,17 +131,4 @@ public class OrderRepository {
         }
         return null;
     }
-
-    public List<Order> statsticOrderByEmployee(long empId) {
-        transaction.begin();
-        try {
-            transaction.commit();
-            return entityManager.createQuery("from Order o where o.employee.id =:id", Order.class)
-                    .setParameter("id", empId).getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            transaction.rollback();
-        }
-        return null;
-    }
 }

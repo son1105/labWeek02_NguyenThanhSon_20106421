@@ -50,4 +50,10 @@ public class OrderDetailRepository {
         }
         return null;
     }
+
+    public List<OrderDetail> getAllByOrderId(long id){
+        return entityManager.createQuery("from OrderDetail od where od.order.id =:id", OrderDetail.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 }

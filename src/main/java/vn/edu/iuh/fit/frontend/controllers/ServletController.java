@@ -9,8 +9,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.iuh.fit.backend.connection.Connection;
+import vn.edu.iuh.fit.backend.entities.Customer;
+import vn.edu.iuh.fit.backend.entities.Employee;
 import vn.edu.iuh.fit.backend.entities.OrderDetail;
 import vn.edu.iuh.fit.backend.entities.Product;
+import vn.edu.iuh.fit.backend.repositoris.OrderDetailRepository;
 import vn.edu.iuh.fit.frontend.models.*;
 
 import java.io.IOException;
@@ -29,6 +32,8 @@ public class ServletController extends HttpServlet {
     private final ProductModel productModel = new ProductModel();
     private final ProductImageModel productImageModel = new ProductImageModel();
     private final ProductPriceModel productPriceModel = new ProductPriceModel();
+
+    private final OrderDetailRepository orderDetailRepository = new OrderDetailRepository();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,6 +59,20 @@ public class ServletController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("chartOfProduct", req.getParameter("chart"));
             resp.sendRedirect("chart.jsp");
+        } else if (req.getParameter("viewDetail") != null) {
+            handleShowDetailOrder(req, resp, Long.parseLong(req.getParameter("viewDetail")));
+        }else if(req.getParameter("viewEmployee")!=null){
+            long id = Long.parseLong(req.getParameter("viewEmployee"));
+            Employee employee= employeeModel.getOne(id);
+            HttpSession session = req.getSession();
+            session.setAttribute("employee", employee);
+            resp.sendRedirect("employee.jsp");
+        }else if(req.getParameter("viewCustomer")!=null){
+            long id = Long.parseLong(req.getParameter("viewCustomer"));
+            Customer customer= customerModel.getOne(id);
+            HttpSession session = req.getSession();
+            session.setAttribute("customer", customer);
+            resp.sendRedirect("customer.jsp");
         } else {//button addToCart
             List<Product> products = productModel.getAll();
             if (products != null) {
@@ -149,5 +168,13 @@ public class ServletController extends HttpServlet {
                     "");
             orderDetailModel.addOrderDetail(orderDetail);
         }
+    }
+
+    public void handleShowDetailOrder(HttpServletRequest req, HttpServletResponse resp, long id) throws IOException {
+        List<OrderDetail> orderDetails = orderDetailRepository.getAllByOrderId(id);
+        HttpSession session = req.getSession();
+        session.setAttribute("orderId", id);
+        session.setAttribute("detail", orderDetails);
+        resp.sendRedirect("orderDetail.jsp");
     }
 }
