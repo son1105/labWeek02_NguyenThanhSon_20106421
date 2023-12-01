@@ -48,7 +48,7 @@ public class OrderRepository {
         transaction.begin();
         try {
             List<Order> orders;
-            orders = entityManager.createQuery("From Order ", Order.class).getResultList();
+            orders = entityManager.createQuery("From Order o order by o.orderDate desc", Order.class).getResultList();
             System.out.println(orders.get(1).getEmployee());
             transaction.commit();
             return orders;
@@ -93,10 +93,10 @@ public class OrderRepository {
         try {
             List<Order> orders;
             if(employeeId == -1){
-                orders = entityManager.createQuery("from Order o where DATE(o.orderDate) =:date", Order.class)
+                orders = entityManager.createQuery("from Order o where DATE(o.orderDate) =:date order by o.orderDate desc ", Order.class)
                         .setParameter("date", date).getResultList();
             } else{
-                orders = entityManager.createQuery("from Order o where o.employee.id =:employeeId and DATE(o.orderDate) =:date", Order.class)
+                orders = entityManager.createQuery("from Order o where o.employee.id =:employeeId and DATE(o.orderDate) =:date order by o.orderDate desc", Order.class)
                         .setParameter("employeeId", employeeId)
                         .setParameter("date", date).getResultList();
             }
