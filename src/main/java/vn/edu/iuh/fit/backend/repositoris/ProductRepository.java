@@ -1,24 +1,24 @@
-package vn.edu.iuh.fit.backend.respositoris;
+package vn.edu.iuh.fit.backend.repositoris;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
-import vn.edu.iuh.fit.backend.entities.Customer;
+import vn.edu.iuh.fit.backend.entities.Product;
 
 import java.util.List;
 
-public class CustomerRespository {
+public class ProductRepository {
     private EntityManager entityManager;
     private EntityTransaction transaction;
 
-    public CustomerRespository() {
+    public ProductRepository() {
         entityManager = Connection.getInstance().getEntityManagerFactory().createEntityManager();
         transaction = entityManager.getTransaction();
     }
-    public boolean addCustomer(Customer customer){
+    public boolean addProduct(Product product){
         transaction.begin();
         try{
-            entityManager.persist(customer);
+            entityManager.persist(product);
             transaction.commit();
             return true;
         }catch (Exception e){
@@ -27,10 +27,10 @@ public class CustomerRespository {
         }
         return false;
     }
-    public boolean updateCustomer(Customer customer){
+    public boolean updateProduct(Product product){
         transaction.begin();
         try{
-            entityManager.merge(customer);
+            entityManager.merge(product);
             transaction.commit();
             return true;
         }catch (Exception e){
@@ -39,31 +39,35 @@ public class CustomerRespository {
         }
         return false;
     }
-    public List<Customer> getAllCustomer(){
+    public List<Product> getAll(){
         transaction.begin();
         try {
-            List<Customer> customers;
-            customers = entityManager.createQuery("From Customer", Customer.class).getResultList();
+            List<Product> products;
+            products = entityManager.createQuery("From Product", Product.class).getResultList();
             transaction.commit();
-            return customers;
+            return products;
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
         }
         return null;
     }
-    public Customer getCustomer(long id){
+    public Product getOneById(long id){
         transaction.begin();
         try {
-            Customer customer = entityManager.createQuery("From Customer c where c.id=:id", Customer.class)
-                    .setParameter("id", id)
-                    .getSingleResult();
+            Product product = entityManager.createQuery("select p from Product p where p.id=:id", Product.class)
+                    .setParameter("id", id).getSingleResult();
             transaction.commit();
-            return customer;
+            return product;
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
         }
         return null;
+    }
+
+    public long getIdByName(String name){
+        return entityManager.createQuery("select p from Product p where p.name=:name", Product.class)
+                .setParameter("name", name).getSingleResult().getId();
     }
 }

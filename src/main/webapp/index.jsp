@@ -7,6 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<%--to create database--%>
+<%--<form action="control">--%>
+<%--    <button type="submit">Click!</button>--%>
+<%--</form>--%>
 <div class="container d-flex flex-column p-5 bg-dark justify-content-center w-50 my-5" style="align-items: center;">
     <div class="d-flex w-75">
         <button class="btn btn-primary w-50 m-2"><a href="manageProduct.jsp" class="link-info">Manage Product</a></button>

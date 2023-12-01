@@ -1,17 +1,15 @@
-package vn.edu.iuh.fit.backend.respositoris;
+package vn.edu.iuh.fit.backend.repositoris;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
 import vn.edu.iuh.fit.backend.entities.ProductImage;
 
-import java.util.Optional;
-
-public class ProductImageRespository{
+public class ProductImageRepository {
     private EntityManager entityManager;
     private EntityTransaction transaction;
 
-    public ProductImageRespository() {
+    public ProductImageRepository() {
         entityManager = Connection.getInstance().getEntityManagerFactory().createEntityManager();
         transaction = entityManager.getTransaction();
     }

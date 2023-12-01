@@ -1,16 +1,15 @@
 package vn.edu.iuh.fit.backend.services;
 
 import vn.edu.iuh.fit.backend.entities.Product;
-import vn.edu.iuh.fit.backend.respositoris.ProductRespository;
+import vn.edu.iuh.fit.backend.repositoris.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ProductService {
-    private ProductRespository respository;
+    private ProductRepository respository;
 
     public ProductService() {
-        respository = new ProductRespository();
+        respository = new ProductRepository();
     }
     public boolean addProduct(Product product){
         return respository.addProduct(product);

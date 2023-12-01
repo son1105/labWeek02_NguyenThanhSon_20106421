@@ -1,16 +1,15 @@
 package vn.edu.iuh.fit.backend.services;
 
 import vn.edu.iuh.fit.backend.entities.Customer;
-import vn.edu.iuh.fit.backend.entities.Employee;
-import vn.edu.iuh.fit.backend.respositoris.CustomerRespository;
+import vn.edu.iuh.fit.backend.repositoris.CustomerRepository;
 
 import java.util.List;
 
 public class CustomerService {
-    private CustomerRespository respository;
+    private CustomerRepository respository;
 
     public CustomerService() {
-        respository = new CustomerRespository();
+        respository = new CustomerRepository();
     }
     public boolean addCustomer(Customer customer){
         return respository.addCustomer(customer);

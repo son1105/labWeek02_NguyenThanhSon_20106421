@@ -18,7 +18,7 @@ public class OrderModel {
         service = new OrderService();
     }
     public boolean addOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        return service.addOrder(new Order(LocalDate.now(), new CustomerModel().getOne(1), new EmployeeModel().getOne(1)));
+        return service.addOrder(new Order(LocalDateTime.now(), new CustomerModel().getOne(1), new EmployeeModel().getOne(1)));
     }
     public boolean updateOrder(Order order){
         return service.updateOrder(order);

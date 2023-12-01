@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Order implements Serializable {
     private long order_id;
 
     @Column(columnDefinition = "datetime(6)")
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
     @ManyToOne
     @JoinColumn(name = "cus_id")
 //    @JsonBackReference
@@ -32,7 +33,7 @@ public class Order implements Serializable {
     @JsonManagedReference
     private List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();
 
-    public Order(long order_id, LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
+    public Order(long order_id, LocalDateTime orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
         this.order_id = order_id;
         this.orderDate = orderDate;
         this.customer = customer;
@@ -40,14 +41,14 @@ public class Order implements Serializable {
         this.orderDetailList = orderDetailList;
     }
 
-    public Order(LocalDate orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
+    public Order(LocalDateTime orderDate, Customer customer, Employee employee, List<OrderDetail> orderDetailList) {
         this.orderDate = orderDate;
         this.customer = customer;
         this.employee = employee;
         this.orderDetailList = orderDetailList;
     }
 
-    public Order(LocalDate orderDate, Customer customer, Employee employee) {
+    public Order(LocalDateTime orderDate, Customer customer, Employee employee) {
         this.orderDate = orderDate;
         this.customer = customer;
         this.employee = employee;
@@ -64,11 +65,11 @@ public class Order implements Serializable {
         this.order_id = order_id;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 

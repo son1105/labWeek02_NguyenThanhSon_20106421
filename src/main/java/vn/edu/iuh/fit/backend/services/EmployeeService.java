@@ -1,15 +1,15 @@
 package vn.edu.iuh.fit.backend.services;
 
 import vn.edu.iuh.fit.backend.entities.Employee;
-import vn.edu.iuh.fit.backend.respositoris.EmployeeRespository;
+import vn.edu.iuh.fit.backend.repositoris.EmployeeRepository;
 
 import java.util.List;
 
 public class EmployeeService {
-    private EmployeeRespository respository;
+    private EmployeeRepository respository;
 
     public EmployeeService() {
-        respository = new EmployeeRespository();
+        respository = new EmployeeRepository();
     }
     public boolean addEmployee(Employee employee){
         return respository.addEmployee(employee);

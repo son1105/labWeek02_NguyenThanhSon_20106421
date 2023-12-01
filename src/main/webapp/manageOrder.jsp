@@ -1,6 +1,6 @@
 <%@ page import="vn.edu.iuh.fit.frontend.models.OrderModel" %>
 <%@ page import="vn.edu.iuh.fit.backend.entities.Order" %>
-<%@ page import="vn.edu.iuh.fit.backend.respositoris.OrderRespository" %><%--
+<%@ page import="vn.edu.iuh.fit.backend.repositoris.OrderRepository" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 27/9/2023

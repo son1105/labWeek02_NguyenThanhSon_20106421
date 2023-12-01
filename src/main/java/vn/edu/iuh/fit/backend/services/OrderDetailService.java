@@ -1,13 +1,12 @@
 package vn.edu.iuh.fit.backend.services;
 
-import vn.edu.iuh.fit.backend.entities.Order;
 import vn.edu.iuh.fit.backend.entities.OrderDetail;
-import vn.edu.iuh.fit.backend.respositoris.OrderDetailRespository;
+import vn.edu.iuh.fit.backend.repositoris.OrderDetailRepository;
 
 public class OrderDetailService {
-    private OrderDetailRespository respository;
+    private OrderDetailRepository respository;
     public OrderDetailService(){
-        respository = new OrderDetailRespository();
+        respository = new OrderDetailRepository();
     }
     public void addOrderDetail(OrderDetail orderDetail){
         respository.addOrderDetail(orderDetail);

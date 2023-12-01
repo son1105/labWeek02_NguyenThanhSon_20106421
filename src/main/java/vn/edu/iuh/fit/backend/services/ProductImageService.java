@@ -1,13 +1,13 @@
 package vn.edu.iuh.fit.backend.services;
 
 import vn.edu.iuh.fit.backend.entities.ProductImage;
-import vn.edu.iuh.fit.backend.respositoris.ProductImageRespository;
+import vn.edu.iuh.fit.backend.repositoris.ProductImageRepository;
 
 public class ProductImageService {
-    private ProductImageRespository respository;
+    private ProductImageRepository respository;
 
     public ProductImageService() {
-        respository = new ProductImageRespository();
+        respository = new ProductImageRepository();
     }
     public ProductImage getProductImageById(long id){
         return respository.getProductImage(id);

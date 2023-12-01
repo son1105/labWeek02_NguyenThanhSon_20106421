@@ -1,18 +1,17 @@
-package vn.edu.iuh.fit.backend.respositoris;
+package vn.edu.iuh.fit.backend.repositoris;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import vn.edu.iuh.fit.backend.connection.Connection;
-import vn.edu.iuh.fit.backend.entities.Customer;
 import vn.edu.iuh.fit.backend.entities.Employee;
 
 import java.util.List;
 
-public class EmployeeRespository {
+public class EmployeeRepository {
     private EntityManager entityManager;
     private EntityTransaction transaction;
 
-    public EmployeeRespository() {
+    public EmployeeRepository() {
         entityManager = Connection.getInstance().getEntityManagerFactory().createEntityManager();
         transaction = entityManager.getTransaction();
     }
