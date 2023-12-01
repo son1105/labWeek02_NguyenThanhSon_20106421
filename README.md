@@ -1,4 +1,4 @@
-![image](https://github.com/son1105/labWeek02_NguyenThanhSon_20106421/assets/115455297/917c1022-0be7-4ab2-a95c-ddfe65e03ca2)# labWeek02_NguyenThanhSon_20106421
+# labWeek02_NguyenThanhSon_20106421
 exercise week 02
 
 Khi chạy chương trình, trang index sẽ hiển thị với 4 lựa chọn manage Product, Employee, Customer, Order
