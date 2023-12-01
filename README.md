@@ -14,6 +14,7 @@ Khi chạy chương trình, trang index sẽ hiển thị với 4 lựa chọn m
   + Sau khi thêm vào giỏ hàng sẽ chuyển đến trang giỏ hàng, có thể lựa chọn sản phẩm để thanh toán bằng cách click vào checkbox bên cạnh sản phẩm và chọn Mua
     ![Screenshot (4)](https://github.com/son1105/labWeek02_NguyenThanhSon_20106421/assets/115455297/d2eab0e9-ed72-4759-9448-4265da71261b)
   + Sau khi chọn mua, sẽ hiển thị hoá đơn và có thể xác nhận bằng cách nhấn Mua, sau đó một hoá đơn sẽ được tạo và lưu, rồi chuyển đến trang manage order.
+    ![Screenshot (68)](https://github.com/son1105/labWeek02_NguyenThanhSon_20106421/assets/115455297/c47b29d8-fafb-4301-96a2-8640893015c7)
     Một order mới đã được tạo, lưu vào database và hiển thị lên đầu danh sách(do danh sách order được sắp xếp theo ngày lập giảm dần).
     ![Screenshot (52)](https://github.com/son1105/labWeek02_NguyenThanhSon_20106421/assets/115455297/388afdc9-d699-45f1-9e0a-166020356c32)
   + Vẽ biểu đồ giá theo thời gian: nhấn vào Chart để xem biểu đồ giá của một sản phẩm theo thời gian.
